@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 // import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.developerblog.app.ws.UserService.UserService;
+import com.developerblog.app.ws.exceptions.UserServiceException;
 import com.developerblog.app.ws.uiModelRequest.UpdateUserDetailsRequestModel;
 import com.developerblog.app.ws.uiModelRequest.UserDetailsRequestModel;
 import com.developerblog.app.ws.uiModelResponse.UserRest;
@@ -31,17 +35,23 @@ public class UserController {
 
     Map<String, UserRest> users;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping
     public String getUsersPaginate(@RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "50") int limit,
             @RequestParam(value = "sort", defaultValue = "desc", required = false) String sort) {
-        return "get user was called with page: " + page + " and limit: " + limit + "sort: " + sort;
+        return "get user was called with page: " + page + " and limit: " + limit + " sort: " + sort;
     }
 
     // @GetMapping(path = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE,
     // MediaType.APPLICATION_JSON_VALUE }) or as follows:
     @GetMapping(path = "/{userId}", produces = { "application/json", "application/xml" })
     public ResponseEntity<UserRest> getUsers(@PathVariable String userId) {
+
+        if (true)
+            throw new UserServiceException("A user service exception occurred");
 
         // Initilal
         // UserRest returnValue = new UserRest();
@@ -74,17 +84,21 @@ public class UserController {
     @PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
             "application/xml" })
     public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails) {
-        UserRest returnValue = new UserRest();
-        returnValue.setFirstName(userDetails.getFirstName());
-        returnValue.setLastName(userDetails.getLastName());
-        returnValue.setEmail(userDetails.getEmail());
 
-        String userId = UUID.randomUUID().toString();
-        returnValue.setUserId(userId);
+        // THIS CODE IS MOVED TO THE UserServiceImpl.java
 
-        if (users == null)
-            users = new HashMap<>();
-        users.put(userId, returnValue);
+        // UserRest returnValue = new UserRest();
+        // returnValue.setFirstName(userDetails.getFirstName());
+        // returnValue.setLastName(userDetails.getLastName());
+        // returnValue.setEmail(userDetails.getEmail());
+
+        // String userId = UUID.randomUUID().toString();
+        // returnValue.setUserId(userId);
+
+        // if (users == null)
+        // users = new HashMap<>();
+        // users.put(userId, returnValue);
+        UserRest returnValue = userService.createUser(userDetails);
         return new ResponseEntity<UserRest>(returnValue, HttpStatus.CREATED);
     }
 
