@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.developerblog.app.ws.UserService.UserService;
-import com.developerblog.app.ws.exceptions.UserServiceException;
+// import com.developerblog.app.ws.exceptions.UserServiceException;
 import com.developerblog.app.ws.uiModelRequest.UpdateUserDetailsRequestModel;
 import com.developerblog.app.ws.uiModelRequest.UserDetailsRequestModel;
 import com.developerblog.app.ws.uiModelResponse.UserRest;
@@ -50,8 +50,9 @@ public class UserController {
     @GetMapping(path = "/{userId}", produces = { "application/json", "application/xml" })
     public ResponseEntity<UserRest> getUsers(@PathVariable String userId) {
 
-        if (true)
-            throw new UserServiceException("A user service exception occurred");
+        //THIS IS A TEST CONDITION JUST TO TEST IS A EXCEPTION HANDLER IS WORKING.
+        // if (true)
+        //     throw new UserServiceException("A user service exception occurred");
 
         // Initilal
         // UserRest returnValue = new UserRest();
@@ -80,10 +81,11 @@ public class UserController {
     // @PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE,
     // MediaType.APPLICATION_JSON_VALUE }, produces = {
     // MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }) or as
-    // foloows
+    // follows
     @PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
             "application/xml" })
-    public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails) {
+    public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails) 
+    {
 
         // THIS CODE IS MOVED TO THE UserServiceImpl.java
 

@@ -16,8 +16,7 @@ import com.developerblog.app.ws.uiModelResponse.UserRest;
 public class UserServiceImpl implements UserService {
     Map<String, UserRest> users;
 
-    //IMPLEMENTING A CLASS BASE DEPENDENCY INJECTION
-
+    // IMPLEMENTING A CLASS BASE DEPENDENCY INJECTION
     Utils utils;
 
     public UserServiceImpl() {
@@ -39,7 +38,9 @@ public class UserServiceImpl implements UserService {
         returnValue.setLastName(userDetails.getLastName());
         returnValue.setEmail(userDetails.getEmail());
 
+        // THIS CODE IS MOVED TO Utils.java and Autowired in as shown above
         // String userId = UUID.randomUUID().toString();
+
         String userId = utils.generateUserId();
         returnValue.setUserId(userId);
 

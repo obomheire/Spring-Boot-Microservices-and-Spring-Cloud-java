@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PhotoAppDiscoveryService/PhotoAppDiscoveryService.iml" filepath="$PROJECT_DIR$/PhotoAppDiscoveryService/PhotoAppDiscoveryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoAppDiscoveryUsers/PhotoAppDiscoveryUsers.iml" filepath="$PROJECT_DIR$/PhotoAppDiscoveryUsers/PhotoAppDiscoveryUsers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Spring-Boot-Microservices-and-Spring-Cloud-java.iml" filepath="$PROJECT_DIR$/.idea/Spring-Boot-Microservices-and-Spring-Cloud-java.iml" />
+    </modules>
+  </component>
+</project>
